@@ -24,12 +24,16 @@
 	          <thead>
 	            <tr>
 	              <th>Name</th>
+	              <th>Username</th>
+	              <th>Role</th>
 	            </tr>
 	          </thead>
 	          <tbody>
 		          	@foreach ($akuns as $key => $akun)
 		            <tr>
 		              <td>{{$akun->name}}</td>
+		               <td>{{$akun->username}}</td>
+		                <td>{{$akun->role}}</td>
 		              <td width="40">
 		              	<a href="{{route('akun.edit', $akun->id)}}" class="btn btn-outline-warning btn-fw">Edit</a>
 		              	<a href="{{route('akun.destroy', $akun->id)}}" class="btn btn-outline-danger btn-fw">Delete</a>

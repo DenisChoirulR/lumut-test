@@ -6,10 +6,21 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests\CategoryRequest;
 use Session;
+use Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AkunController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware(function ($request, $next) {
+      if (Auth::user()->role != 'admin') {
+        return redirect('/home');
+      }
+    });
+    
+    
+  }
   /**
    * Show the application dashboard.
    *
@@ -17,6 +28,7 @@ class AkunController extends Controller
    */
   public function index()
   {
+      
       $akuns = User::all();
 
       return view('akun/index', compact('akuns'));
@@ -50,12 +62,12 @@ class AkunController extends Controller
 
   public function update(CategoryRequest $request, User $akun)
   {
-      $akun->update([
+      User::find($request->id)->update([
         'name' => $request->name,
         'username' => $request->username,
         'password' => Hash::make($request->password),
         'role' => $request->role
-    ]);
+      ]);
 
       Session::flash('success','Successfully updated akun data');
 

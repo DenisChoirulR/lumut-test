@@ -6,7 +6,7 @@
     <div class="col-md-12 grid-margin">
       <div class="row">
         <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-          <h3 class="font-weight-bold">Form Categories</h3>
+          <h3 class="font-weight-bold">Form Akun</h3>
         </div>
       </div>
     </div>
@@ -18,12 +18,17 @@
       @if (isset($akun))
       <form class="forms-sample" action="{{route('akun.update', $akun)}}" method="post">
       	{{ csrf_field() }}
+        <input type="hidden" name="id" class="form-control" id="exampleInputName1" placeholder="Name" isset($akun) ? value="{{$akun->id}}" : ''>
         <div class="form-group">
           <label for="exampleInputName1">Name</label>
-          <input type="text" name="name" class="form-control" id="exampleInputName1" placeholder="Name" isset($akun) ? value="{{$akun->name}}" : '' >
+          <input type="text" name="name" class="form-control" id="exampleInputName1" placeholder="Name" isset($akun) ? value="{{$akun->name}}" : ''>
         </div>
         <div class="form-group">
-          <label for="exampleInputName1">Type</label>
+          <label for="exampleInputName1">Username</label>
+          <input type="text" name="username" class="form-control" id="exampleInputName1" placeholder="Username" isset($akun) ? value="{{$akun->name}}" : ''>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputName1">Role {{$akun->role}}</label>
           	<select class="form-control form-control-sm" id="exampleFormControlSelect3" name="role">
 	          <option value="admin" {{$akun->role}} == "admin" ? 'selected' : ''>Admin</option>
 	          <option value="author" {{$akun->role}} == "author" ? 'selected' : ''>Author</option>

@@ -43,17 +43,17 @@ class PostController extends Controller
 
   public function edit(Request $request)
   {
-      $transaction = Post::find($request->id);
+      $post = Post::find($request->id);
 
       return view('post/form', compact('post'));
   }
 
-  public function update(TransactionRequest $request)
+  public function update(Request $request)
   {
-      $transaction = Transaction::find($request->id)->update
+      $post = Post::find($request->id)->update
       ([
         'title' => $request->title,
-        'date' => $request->date,
+        'date' => date("Y/m/d"),
         'content' => $request->content,
         'username' => Auth::user()->username
       ]);
